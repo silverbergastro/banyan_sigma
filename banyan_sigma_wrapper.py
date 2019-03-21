@@ -25,10 +25,10 @@ def banyan_sigma_wrapper(name=None,ip=None,ra=None,dec=None,pmra=None,pmdec=None
 	probs = np.minimum(probs,max_prob)
 	probs_formatted = np.round(np.minimum(probs,max_prob),1)
 	output_all.loc[0] = probs_formatted
-	print(output_all)
+	#print(output_all)
 	
 	#Save output probabilities to CSV
-	outdir = '/home/ipm/banyan/banyansigma/answer/'
+	outdir = 'C:/Users/Steven Silverberg/Documents/Github/banyan_sigma/answer/'
 	output_all.to_csv(outdir+'prob_'+name+'.dat',index=False)
 	
 	#Read all most probable RVs
@@ -42,9 +42,11 @@ def banyan_sigma_wrapper(name=None,ip=None,ra=None,dec=None,pmra=None,pmdec=None
 		d_opt[keys] = [np.round(output[keys]['D_OPT'][0],1)]
 		ed_opt[keys] = [np.round(output[keys]['ED_OPT'][0],1)]
 	
-	print(rv_opt)
+	#print(rv_opt)
 	#Save optimal quantities to CSV files	
 	d_opt.to_csv(outdir+'mdist_'+name+'.dat',index=False)
 	ed_opt.to_csv(outdir+'emdist_'+name+'.dat',index=False)
 	erv_opt.to_csv(outdir+'emvrad_'+name+'.dat',index=False)
 	rv_opt.to_csv(outdir+'mvrad_'+name+'.dat',index=False)
+	
+	return output_all
